@@ -18,11 +18,14 @@
 <main>
 <h2>Practice</h2>
 <pre>
-<?php
-  $day = sprintf('%04d年%02d月%02d日', 2021, 05, 22,);
-  print($day);
-
+<?php 
+  $news = file_get_contents('../../news/news.text');
+  print($news);
+  $new = "Kathryn Harris\n". $news;
+  file_put_contents('../../news/news.text', $news);
+  print($new);
 ?>
+
 </pre>
 </main>
 </body>    

@@ -18,9 +18,13 @@
 <main>
 <h2>Practice</h2>
 <pre>
-<?php
-  $day = sprintf('%04d年%02d月%02d日', 2021, 05, 22,);
-  print($day);
+<?php 
+$success= file_put_contents('../../news/news.text','2021/05/22 リニューアルしました。');
+if ($success) {
+  print('ファイルの書き込みに成功しました。');
+}else{ 
+  print('ファイルの書き込みに失敗しました。');
+}
 
 ?>
 </pre>

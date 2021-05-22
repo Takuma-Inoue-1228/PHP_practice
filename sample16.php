@@ -18,11 +18,15 @@
 <main>
 <h2>Practice</h2>
 <pre>
-<?php
-  $day = sprintf('%04d年%02d月%02d日', 2021, 05, 22,);
-  print($day);
+<?php 
+  $file = file_get_contents('https://h2o-space.com/feed/json/');
+  $json = json_decode($file);
 
-?>
+  foreach($json -> items as $item):
+  ?>
+●<a href="<?php print($item -> url); ?>"><?php print($item -> title); ?></a>
+<?php endforeach; ?>
+
 </pre>
 </main>
 </body>    
