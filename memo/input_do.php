@@ -20,8 +20,10 @@
   try{
     $db = new PDO('mysql:dbname=mydb;host=localhost;port=8889;charset=utf8','root','root');
   
-    $db->exec('INSERT INTO memos SET memo="' . $_POST['memo'] . '", created_at=NOW()');
-
+    $statement = $db->prepare('INSERT INTO memos SET memo=?, created_at=NOW()');
+    $statement->bindParam(1, $_POST['memo']);
+    $statement->execute();
+    echo '送信されました。';
   } catch(PDOExceqtion $e) {
       echo 'DB接続エラー：' . $e->getMessage();
   }
