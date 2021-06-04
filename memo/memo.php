@@ -32,6 +32,6 @@ try{
     <a href="index.php">戻る</a>
   </article>
 
-</main>
+</main> 
 </body>    
 </html>
