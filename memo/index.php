@@ -18,21 +18,18 @@
 <main>
 <h2>Practice</h2>
 <?php 
-try{
-  $db = new PDO('mysql:dbname=mydb;host=localhost;port=8889;charset=utf8','root','root');
-} catch(PDOExceqtion $e) {
-    echo 'DB接続エラー：' . $e->getMessage();
-}
 
-$memos = $db->query('SELECT * FROM memos ORDER BY id DESC');
+  require ('dbconect.php');
+
+  $memos = $db->query('SELECT * FROM memos ORDER BY id DESC');
 ?>
 <article>
-    <?php while($memo = $memos->fetch()):?>
-      <p>ID:<?php print($memo['id']);?>
-      <a href="#"><?php print(mb_substr($memo['memo'],0, 20,"UTF-8"));?></a></p>
-      <time><?php print($memo['created_at']);?></time>
-      <hr>
-    <?php endwhile; ?>
+  <?php while($memo = $memos->fetch()):?>
+    <p>ID:<?php print($memo['id']);?>
+    <a href=" memo.php?id=<?php print($memo['id']);?>"><?php print(mb_substr($memo['memo'],0, 20,"UTF-8"));?></a></p>
+    <time><?php print($memo['created_at']);?></time>
+    <hr>
+  <?php endwhile; ?>
 
 </article>
 

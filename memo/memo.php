@@ -18,15 +18,21 @@
 <main>
 <h2>Practice</h2>
 <?php 
-try{
-  $db = new PDO('mysql:dbname=mydb;host=localhost;port=8889;charset=utf8','root','root');
-} catch(PDOExceqtion $e) {
-    echo 'DB接続エラー：' . $e->getMessage();
-}
 
-  $memos = $db->query('SELECT * FROM memos WHERE id=12');
+  require ('dbconect.php');
+
+  $id = $_REQUEST['id'];
+  if (!is_numeric($id) || $id <= 0){
+    print('※1以上の数字で入力してください');
+    exit();
+  }
+
+
+  $memos = $db->prepare('SELECT * FROM memos WHERE id=?');
+  $memos->execute(array($id));
   $memo = $memos->fetch();
 ?>
+
   <article>
     <pre><?php print($memo['memo']); ?></pre>
     <a href="index.php">戻る</a>
