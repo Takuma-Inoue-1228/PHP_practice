@@ -21,7 +21,7 @@
 
   require ('dbconect.php');
 
-  $memos = $db->query('SELECT * FROM memos ORDER BY id DESC');
+  $memos = $db->query('SELECT * FROM memos ORDER BY id DESC LIMIT 0, 5');
 ?>
 <article>
   <?php while($memo = $memos->fetch()):?>
