@@ -18,11 +18,20 @@
 <main>
 <h2>Practice</h2>
 <?php 
-
   require ('dbconect.php');
 
-  $memos = $db->query('SELECT * FROM memos ORDER BY id DESC LIMIT 0, 5');
+  if(isset($_REQUEST['page']) && is_numeric($_REQUEST['page'])){
+    $page =  $_REQUEST['page'];
+  }else{
+    $page = 1;
+  }
+  $start = ($page -1) * 5;
+
+  $memos = $db->prepare('SELECT * FROM memos ORDER BY id DESC LIMIT ?, 5');
+  $memos->bindParam(1, $start, PDO::PARAM_INT);
+  $memos->execute();
 ?>
+
 <article>
   <?php while($memo = $memos->fetch()):?>
     <p>ID:<?php print($memo['id']);?>
@@ -30,7 +39,12 @@
     <time><?php print($memo['created_at']);?></time>
     <hr>
   <?php endwhile; ?>
-
+  
+  <?php if ($page >= 2):?>
+    <a href="index.php?page=<?php print($page-1);?>"><?php print($page-1);?>ページ目へ</a>
+    <?php endif;?>
+    |
+    <a href="index.php?page=<?php print($page+1);?>"><?php print($page+1);?>ページ目へ</a>
 </article>
 
 </main>
