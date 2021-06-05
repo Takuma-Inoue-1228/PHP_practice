@@ -18,7 +18,6 @@
 <main>
 <h2>Practice</h2>
 <?php 
-
   require ('dbconect.php');
 
   $id = $_REQUEST['id'];
@@ -27,7 +26,6 @@
     exit();
   }
 
-
   $memos = $db->prepare('SELECT * FROM memos WHERE id=?');
   $memos->execute(array($id));
   $memo = $memos->fetch();
@@ -35,7 +33,9 @@
 
   <article>
     <pre><?php print($memo['memo']); ?></pre>
-    <a href="index.php">戻る</a>
+    <a href="update.php?id=<?php print($memo['id']);?>">編集する</a>|
+    <a href="index.php">戻る</a>|
+    <a href="delete.php?id=<?php print($memo['id']);?>">削除する</a>
   </article>
 
 </main> 
