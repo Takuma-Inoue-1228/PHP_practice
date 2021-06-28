@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="css/style.css">
 
 <title>PHP</title>
 </head>
@@ -16,7 +16,7 @@
 </header>
 
 <main>
-<h2>Practice</h2>
+<h2>掲示板</h2>
 <?php 
   require ('dbconect.php');
 
@@ -40,12 +40,13 @@
     <hr>
   <?php endwhile; ?>
   
+  <a href="input.html">新規投稿</a>
+  <br>
+
   <?php if ($page >= 2):?>
     <a href="index.php?page=<?php print($page-1);?>"><?php print($page-1);?>ページ目へ</a>
   <?php endif;?>
-    
     |
-
   <?php 
   $counts = $db->query('SELECT COUNT(*) as cnt FROM memos');
   $count = $counts->fetch();
@@ -54,7 +55,6 @@
   ?>
     <a href="index.php?page=<?php print($page+1);?>"><?php print($page+1);?>ページ目へ</a>
   <?php endif;?>
-
 </article>
 
 </main>
