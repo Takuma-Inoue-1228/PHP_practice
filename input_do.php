@@ -9,9 +9,7 @@
 <title>PHP</title>
 </head>
 <body>
-<header>
-<h1 class="font-weight-normal">PHP</h1>    
-</header>
+
 
 <main>
 <h2>Practice</h2>
