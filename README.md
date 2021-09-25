@@ -1,5 +1,5 @@
 # PHP_memo
-https://memo.takuma.page/index.php
+http://memo.takuma-inoue.com/
 
 ## 目的
 - DBへのPDO接続の学習
